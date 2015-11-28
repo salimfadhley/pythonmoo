@@ -1,4 +1,6 @@
-class Scene:
+class Thing(object):
 
     def __init__(self, name):
         self.name = name
+
+
