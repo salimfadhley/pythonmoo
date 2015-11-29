@@ -1,20 +1,15 @@
 from pygraph.classes.digraph import digraph
 
-from pythonmoo.scene.base import Base
+from pythonmoo.scene.container import Container
+from pythonmoo.scene.relatable import Relatable
 
 
-class Scene(Base):
+class Scene(digraph, Relatable, Container):
 
-    @classmethod
-    def new(cls, name, graph=None):
-        scene = cls(name)
-        graph = graph or digraph()
-        graph.add_node(scene)
-        return scene.add_graph(graph)
+    def get_graph(self):
+        return self
 
     def __init__(self, name):
+        digraph.__init__(self)
         self.name = name
 
-    def add_graph(self, graph):
-        self.graph = graph
-        return self
