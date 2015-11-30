@@ -1,3 +1,5 @@
+CACHE = {}
+
 class Relationship:
 
     def __init__(self, name:str):
@@ -5,4 +7,6 @@ class Relationship:
 
     @classmethod
     def get(cls, name:str):
-        return Relationship(name)
+        if not name in CACHE:
+            CACHE[name] = Relationship(name)
+        return CACHE[name]
