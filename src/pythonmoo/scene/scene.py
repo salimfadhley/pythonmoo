@@ -1,11 +1,11 @@
 from pygraph.classes.digraph import digraph
 
-from pythonmoo.scene.container import Container
+from pythonmoo.scene.abstractcontainer import AbstractContainer
 from pythonmoo.scene.id_generator import get_next_id
 from pythonmoo.scene.relatable import Relatable
 
 
-class Scene(Relatable, Container):
+class Scene(Relatable, AbstractContainer):
 
     def get_this_node(self):
         return self.scene_id
@@ -20,8 +20,12 @@ class Scene(Relatable, Container):
     def get_graph(self):
         return self.graph
 
-    def __init__(self, name:str, graph:digraph, scene_id:str):
+    def set_graph(self, graph):
         self.graph = graph
+
+
+    def __init__(self, name:str, graph:digraph, scene_id:str):
+        self.set_graph(graph)
         self.name = name
         self.scene_id = scene_id
 

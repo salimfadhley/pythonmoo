@@ -1,14 +1,15 @@
-from abc import abstractmethod, ABCMeta
-
+from pythonmoo.scene.abstractcontainer import AbstractContainer
+from pythonmoo.scene.relatable import Relatable
 from pythonmoo.scene.thing import Thing
 
 
-class Container(metaclass=ABCMeta):
+class Container(Thing, Relatable, AbstractContainer):
 
-    @abstractmethod
-    def add_relationship(self, relationship_name, other_thing):
-        raise NotImplemented
+    def set_graph(self, graph):
+        self.graph = graph
 
-    def contains(self, t:Thing):
-        self.add_relationship(relationship_name="contains", other_thing=t)
+    def get_graph(self):
+        return self.graph
+
+    def get_this_node(self):
         return self
