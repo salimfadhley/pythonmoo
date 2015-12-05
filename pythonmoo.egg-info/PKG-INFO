@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: pythonmoo
+Version: 0.0.1
+Summary: A MOO style game written in Python
+Home-page: https://bitbucket.org/salimfadhley/pythonmoo
+Author: Salim Fadhley
+Author-email: salimfadhley@gmail.com
+License: UNKNOWN
+Description: A MOO style game written in Python
+Platform: UNKNOWN

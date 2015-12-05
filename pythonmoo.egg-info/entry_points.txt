@@ -1,0 +1,3 @@
+[console_scripts]
+pythonmoo = pythonmoo.main:main
+

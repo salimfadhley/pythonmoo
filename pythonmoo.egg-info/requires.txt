@@ -1,0 +1,7 @@
+python-graph-core
+gevent
+blessings
+ply
+mock
+parsimonious
+six

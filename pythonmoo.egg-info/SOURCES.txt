@@ -1,0 +1,9 @@
+setup.py
+pythonmoo.egg-info/PKG-INFO
+pythonmoo.egg-info/SOURCES.txt
+pythonmoo.egg-info/dependency_links.txt
+pythonmoo.egg-info/entry_points.txt
+pythonmoo.egg-info/requires.txt
+pythonmoo.egg-info/top_level.txt
+pythonmoo.egg-info/zip-safe
+src/pythonmoo/__init__.py
