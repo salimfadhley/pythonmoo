@@ -3,7 +3,7 @@ import os
 
 PROJECT_ROOT, _ = os.path.split(__file__)
 VERSION = REVISION = '0.0.1'
-PROJECT_NAME = 'PythonMoo'
+PROJECT_NAME = 'pythonmoo'
 PROJECT_AUTHORS = "Salim Fadhley"
 PROJECT_EMAILS = 'salimfadhley@gmail.com'
 PROJECT_URL = "https://bitbucket.org/salimfadhley/pythonmoo"
