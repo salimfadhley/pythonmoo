@@ -12,24 +12,18 @@ class TestScene(unittest.TestCase):
         self.graph = digraph()
 
     def test_make_new_scene(self):
-        Scene.new(graph=self.graph, name="The First Room")
+        Scene(name="The First Room")
 
     def test_scene_properties(self):
-        s = Scene.new(graph=self.graph, name="The First Room")
+        s = Scene(name="The First Room")
         self.assertEqual(s.name, "The First Room")
-        self.assertEqual(s.graph, self.graph)
-
-    def test_new_thing(self):
-        s = Scene.new(self.graph, "The First Room")
-        t = Thing(name="object")
-        s.has(t)
 
 
 class TestScene2(unittest.TestCase):
     def setUp(self):
         self.g = digraph()
         self.w = World(self.g)
-        self.s = Scene.new(self.g, "The First Scene")
+        self.s = Scene("The First Scene")
         self.w.inject(self.s)
 
     def test_scene_contains_returns_the_right_object(self):
@@ -38,20 +32,13 @@ class TestScene2(unittest.TestCase):
         self.w.relate(self.s,t,"in")
         self.assertEqual(self.w.get_related(self.s, "in"), {t})
 
-    # def test_thing_in_scene_relationship(self):
-    #     t = Thing("object")
-    #     s = self.s.has(t)
-    #     self.assertTrue(t in s.contents())
+    def test_relationships_are_specfic(self):
+        t0 = Thing("A")
+        t1 = Thing("B")
+        self.w.inject(t0)
+        self.w.inject(t1)
 
-    # def test_thing_in_scene_relationship(self):
-    #     bag = Container("bag")
-    #     egg = Thing("egg")
-    #
-    #     s = Scene.new("room")
-    #
-    #     s.contains(bag)
-    #     bag.contains(egg)
-    #
-    #     self.assertEqual(s.get_related_objects(relationship="contains"), {bag, })
-    #     self.assertEqual(bag.get_related_objects(relationship="contains"), {egg, })
+        self.w.relate(self.s,t0,"in")
+        self.w.relate(self.s,t1,"on")
 
+        self.assertEqual(self.w.get_related(self.s, "in"), {t0})

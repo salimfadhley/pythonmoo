@@ -17,4 +17,9 @@ class World:
         self.g.add_edge((a,b), attrs=[("relationship", relationship)])
 
     def get_related(self, a, relationship_name):
-        return set(self.g.neighbors(a))
+        relationship = Relationship.get(relationship_name)
+        related = set()
+        for n in self.g.neighbors(a):
+            if dict(self.g.edge_attr.get((a,n), [])).get("relationship") == relationship:
+                related.add(n)\
+        return related
