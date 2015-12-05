@@ -1,4 +1,8 @@
-class Thing:
+from pythonmoo.scene.base_thing import BaseThing
 
-    def __init__(self, name):
-        pass
+
+class Thing(BaseThing):
+
+    @classmethod
+    def allowed_relationships(cls):
+        return {}
