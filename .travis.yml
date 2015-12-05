@@ -11,6 +11,6 @@ install:
 
 # command to run tests, e.g. python setup.py test
 script:
-    - pep8 --ignore=E501 jenkinsapi/*.py
-    - pylint --rcfile=pylintrc jenkinsapi/*.py --disable R0912
+    - pep8 --ignore=E501 src/pythonmoo/*.py
+    - pylint --rcfile=pylintrc src/pythonmoo/*.py --disable R0912
     - nosetests tests
