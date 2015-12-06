@@ -1,6 +1,8 @@
 import unittest
 
 from pygraph.classes.digraph import digraph
+
+from pythonmoo.scene.container import Container
 from pythonmoo.scene.scene import Scene
 from pythonmoo.scene.thing import Thing
 from pythonmoo.scene.world import World
@@ -42,3 +44,15 @@ class TestScene2(unittest.TestCase):
         self.w.relate(self.s,t1,"on")
 
         self.assertEqual(self.w.get_related(self.s, "in"), {t0})
+
+    def test_relationships_are_bidirectional(self):
+        watch = Thing("watch")
+        bag = Container("bag")
+        self.w.inject(watch)
+        self.w.inject(bag)
+
+        self.w.relate(self.s,watch,"in")
+        self.w.relate(watch,bag,"in")
+
+        self.assertEqual(self.w.get_related(self.s, "in"), {bag})
+        self.assertEqual(self.w.get_related(bag, "contains"), {watch})
