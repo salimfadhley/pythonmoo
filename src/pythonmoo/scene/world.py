@@ -12,9 +12,9 @@ class World:
     def inject(self, t:Thing):
         self.g.add_node(t)
 
-    def relate(self, a:Thing,b:Thing,relationship_name:str):
+    def relate(self, a:Thing, relationship_name:str, b:Thing):
         relationship = Relationship.get(relationship_name)
-        self.g.add_edge((a,b), attrs=[("relationship", relationship)])
+        self.g.add_edge((b,a), attrs=[("relationship", relationship)])
 
     def get_related(self, a, relationship_name):
         relationship = Relationship.get(relationship_name)

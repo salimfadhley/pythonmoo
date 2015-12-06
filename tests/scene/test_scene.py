@@ -31,8 +31,8 @@ class TestScene2(unittest.TestCase):
     def test_scene_contains_returns_the_right_object(self):
         t = Thing("object")
         self.w.inject(t)
-        self.w.relate(self.s,t,"in")
-        self.assertEqual(self.w.get_related(self.s, "in"), {t})
+        self.w.relate(self.s,"in",t)
+        self.assertEqual(self.w.get_related(t, "in"), {self.s})
 
     def test_relationships_are_specfic(self):
         t0 = Thing("A")
@@ -40,19 +40,14 @@ class TestScene2(unittest.TestCase):
         self.w.inject(t0)
         self.w.inject(t1)
 
-        self.w.relate(self.s,t0,"in")
-        self.w.relate(self.s,t1,"on")
+        self.w.relate(t0, "in" ,self.s)
+        self.w.relate(t1, "on" ,self.s)
 
         self.assertEqual(self.w.get_related(self.s, "in"), {t0})
 
     def test_relationships_are_bidirectional(self):
         watch = Thing("watch")
         bag = Container("bag")
-        self.w.inject(watch)
         self.w.inject(bag)
-
-        self.w.relate(self.s,watch,"in")
-        self.w.relate(watch,bag,"in")
-
+        self.w.relate(bag, "in", self.s)
         self.assertEqual(self.w.get_related(self.s, "in"), {bag})
-        self.assertEqual(self.w.get_related(bag, "contains"), {watch})
