@@ -9,3 +9,8 @@ class TestRelationship(unittest.TestCase):
         r0 = Relationship.get("xxx")
         r1 = Relationship.get("xxx")
         self.assertTrue(r0==r1)
+
+    def test_some_relationships_can_be_inberted(self):
+        r0 = Relationship.get("above")
+        r1 = Relationship.get("below")
+        self.assertEqual(r0.invert(), r1)

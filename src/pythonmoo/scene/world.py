@@ -19,7 +19,9 @@ class World:
     def get_related(self, a, relationship_name):
         relationship = Relationship.get(relationship_name)
         related = set()
+
         for n in self.g.neighbors(a):
             if dict(self.g.edge_attr.get((a,n), [])).get("relationship") == relationship:
                 related.add(n)
+
         return related

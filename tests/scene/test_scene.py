@@ -45,9 +45,27 @@ class TestScene2(unittest.TestCase):
 
         self.assertEqual(self.w.get_related(self.s, "in"), {t0})
 
-    def test_relationships_are_bidirectional(self):
+    def test_relationships_have_direction0(self):
         watch = Thing("watch")
         bag = Container("bag")
         self.w.inject(bag)
         self.w.relate(bag, "in", self.s)
         self.assertEqual(self.w.get_related(self.s, "in"), {bag})
+
+    def test_relationships_have_direction1(self):
+        watch = Thing("watch")
+        bag = Container("bag")
+        self.w.inject(bag)
+        self.w.inject(watch)
+        self.w.relate(bag, "in", self.s)
+        self.w.relate(watch, "in", bag)
+        self.assertEqual(self.w.get_related(bag, "in"), {watch})
+
+    # def test_relationships_are_bidrectional(self):
+    #     watch = Thing("watch")
+    #     bag = Container("bag")
+    #     self.w.inject(bag)
+    #     self.w.inject(watch)
+    #     self.w.relate(bag, "in", self.s)
+    #     self.w.relate(watch, "in", bag)
+    #     self.assertEqual(self.w.get_related(watch, "contains"), {bag})
