@@ -17,11 +17,21 @@ class World:
         self.g.add_edge((b,a), attrs=[("relationship", relationship)])
 
     def get_related(self, a, relationship_name):
-        relationship = Relationship.get(relationship_name)
         related = set()
+
+        relationship = Relationship.get(relationship_name)
 
         for n in self.g.neighbors(a):
             if dict(self.g.edge_attr.get((a,n), [])).get("relationship") == relationship:
                 related.add(n)
+
+        inverted_relationship = relationship.invert()
+
+        for n in self.g.incidents(a):
+            if dict(self.g.edge_attr.get((a,a), [])).get("relationship") == inverted_relationship:
+                related.add(n)
+
+
+
 
         return related
