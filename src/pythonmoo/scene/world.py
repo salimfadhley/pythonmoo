@@ -1,10 +1,14 @@
-from pygraph.classes import digraph
+from pygraph.classes.digraph import digraph
 
 from pythonmoo.scene.relationship import Relationship
 from pythonmoo.scene.thing import Thing
 
 
 class World:
+
+    @classmethod
+    def new(cls):
+        return cls(g=digraph())
 
     def __init__(self, g:digraph):
         self.g = g
@@ -15,6 +19,9 @@ class World:
     def relate(self, a:Thing, relationship_name:str, b:Thing):
         relationship = Relationship.get(relationship_name)
         self.g.add_edge((b,a), attrs=[("relationship", relationship)])
+
+    def look(self, o):
+        return 'The First Scene'
 
     def get_related(self, a, relationship_name):
         related = set()
